@@ -15,7 +15,7 @@ class DokumenController extends Controller
     public function index(Dokumen $dokumen)
     {
         return view('dashboard.posts.show', [
-            'post' => $dokumen
+            'dokumen' => $dokumen
         ]);
     }
 
@@ -73,7 +73,7 @@ class DokumenController extends Controller
     public function edit(Dokumen $dokumen)
     {
         return view('dokumen.edit', [
-            'post' => $dokumen
+            'dokumen' => $dokumen
         ]);
     }
 
@@ -94,6 +94,6 @@ class DokumenController extends Controller
         }
         Dokumen::destroy($dokumen->id);
 
-        return redirect('/dokumen/index')->with('success', 'Post has beed deleted!');
+        return redirect('/dokumen/index')->with('success', 'Dokumen has beed deleted!');
     }
 }

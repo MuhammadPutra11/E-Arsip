@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSurat_masuksTable extends Migration
+class CreateSuratmasuksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -30,6 +30,6 @@ class CreateSurat_masuksTable extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('surat_masuks');
+        Schema::dropIfExists('suratmasuks');
     }
 };

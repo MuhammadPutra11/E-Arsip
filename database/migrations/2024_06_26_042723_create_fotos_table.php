@@ -13,7 +13,7 @@ class CreatefotosTable extends Migration
      */
     public function up()
     {
-        Schema::create('surat_masuks', function (Blueprint $table) {
+        Schema::create('fotos', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
             $table->string('nama_foto');
