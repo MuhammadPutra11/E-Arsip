@@ -63,7 +63,7 @@ class DokumenController extends Controller
         return view('dokumen', [
             "title" => "Single dokumen",
             "active" => "dokumen",
-            "dokumen" => $dokumen
+            "dokumen" => $dokumen 
         ]);
     }
 
@@ -94,6 +94,6 @@ class DokumenController extends Controller
         }
         Dokumen::destroy($dokumen->id);
 
-        return redirect('/dokumen/index')->with('success', 'Dokumen has beed deleted!');
+        return redirect('/dokumen/index')->with('success', 'Dokumen telah dihapus!');
     }
 }

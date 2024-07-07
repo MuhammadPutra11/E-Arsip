@@ -7,7 +7,7 @@
       <div class="grid gap-4 mb-4">
          <div class="flex">
             <h2 class="font-bold text-2xl">Data Surat Keluar</h2>
-            <a href="/dokumen/create" class="font-medium p-1.5 ml-10 rounded-md text-White bg-cyan-300 dark:text-blue-500 hover:bg-cyan-500">+ Tambah Surat Keluar</a>
+            <a href="/suratkeluar/create" class="font-medium p-1.5 ml-10 rounded-md text-White bg-cyan-300 dark:text-blue-500 hover:bg-cyan-500">+ Tambah Surat Keluar</a>
          </div>
 
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
