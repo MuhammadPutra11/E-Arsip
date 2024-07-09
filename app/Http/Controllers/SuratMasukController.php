@@ -13,7 +13,9 @@ class SuratMasukController extends Controller
      */
     public function index()
     {
-        //
+        return view('suratmasuk.index', [
+            "suratmasuk" => SuratMasuk::all()
+        ]);
     }
 
     /**

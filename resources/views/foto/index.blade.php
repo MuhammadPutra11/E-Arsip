@@ -35,50 +35,34 @@
            </tr>
        </thead>
        <tbody>
+        @foreach ($foto as $foto)
            <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
                <th class="pl-8 py-4 ">
-                  1
+                {{ $loop->iteration }}
                </th>
                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                    File Foto
                </th>
                <td class="px-6 py-4">
-                  Kegiatan Bimtek 2023
+                {{ $foto->nama_foto }}
                </td>
                <td class="px-6 py-4">
-                   21 Mei 2023
+                {{ $foto->tanggal_foto }}
                </td>
                <td class="px-6 py-4">
-                   Di aula pemko
+                {{ $foto->catatan }}
                </td>
                <td class="px-6 py-4">
-                  <a href="/foto/view" class="font-medium p-1.5 rounded-md text-black bg-green-500 dark:text-blue-500 hover:underline">View</a>
+                  <a href="/foto/view" class="font-medium p-1.5 rounded-md text-black bg-green-500 dark:text-blue-500 hover:underline">Detail</a>
                   <a href="/foto/edit" class="font-medium p-1.5 rounded-md text-black bg-blue-500 dark:text-blue-500 hover:underline">Edit</a>
-                  <a href="#" class="font-medium p-1.5 rounded-md text-black bg-red-500 dark:text-blue-500 hover:underline" onclick="return confirm('Are you sure?')">Delete</a>
+                  <form action="/foto/{{ $foto->id }}" method="post" class='d-inline'>
+                    @method('delete')
+                    @csrf
+                      <a href="#" class="font-medium p-1.5 rounded-md text-black bg-red-500 dark:text-blue-500 hover:underline" onclick="return confirm('Are you sure?')">Delete</a>
+                    </form>
                </td>
            </tr>
-           <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-            <th class="pl-8 py-4 ">
-               2
-            </th>
-            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                File Foto
-            </th>
-            <td class="px-6 py-4">
-               Kegiatan Bimtek 2024
-            </td>
-            <td class="px-6 py-4">
-                21 Mei 2024
-            </td>
-            <td class="px-6 py-4">
-                Di aula dinas
-            </td>
-            <td class="px-6 py-4">
-               <a href="/foto/view" class="font-medium p-1.5 rounded-md text-black bg-green-500 dark:text-blue-500 hover:underline">View</a>
-               <a href="/foto/edit" class="font-medium p-1.5 rounded-md text-black bg-blue-500 dark:text-blue-500 hover:underline">Edit</a>
-               <a href="#" class="font-medium p-1.5 rounded-md text-black bg-red-500 dark:text-blue-500 hover:underline" onclick="return confirm('Are you sure?')">Delete</a>
-            </td>
-        </tr>
+           @endforeach
            
        </tbody>
    </table>
