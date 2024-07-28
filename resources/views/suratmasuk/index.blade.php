@@ -35,51 +35,33 @@
            </tr>
        </thead>
        <tbody>
+        @foreach ($suratmasuk as $suratmasuk)
            <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
                <th class="pl-8 py-4 ">
-                  1
+                {{ $loop->iteration }}
                </th>
                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                   Surat Undangan Rapat
+                {{ $suratmasuk->nama_suratmasuk }}
                </th>
                <td class="px-6 py-4">
-                  21 Mei 2023
+                {{ $suratmasuk->tanggal_suratmasuk }}
                </td>
                <td class="px-6 py-4">
-                   Teo
+                {{ $suratmasuk->pengirim }}
                </td>
                <td class="px-6 py-4">
-                   Sudah dihadiri oleh .....
+                {{ $suratmasuk->catatan }}
                </td>
                <td class="px-6 py-4">
-                  <a href="/suratmasuk/view" class="font-medium p-1.5 rounded-md text-black bg-green-500 dark:text-blue-500 hover:underline">View</a>
+                  <a href="/suratmasuk/view" class="font-medium p-1.5 rounded-md text-black bg-green-500 dark:text-blue-500 hover:underline">Detail</a>
                   <a href="/suratmasuk/edit" class="font-medium p-1.5 rounded-md text-black bg-blue-500 dark:text-blue-500 hover:underline">Edit</a>
-                  <a href="#" class="font-medium p-1.5 rounded-md text-black bg-red-500 dark:text-blue-500 hover:underline" onclick="return confirm('Are you sure?')">Delete</a>
+                  <form action="/suratmasuk/{{ $suratmasuk->id }}" method="post" class='d-inline'>
+                    @method('delete')
+                    @csrf
+                      <a href="#" class="font-medium p-1.5 rounded-md text-black bg-red-500 dark:text-blue-500 hover:underline" onclick="return confirm('Are you sure?')">Delete</a>
+                    </form>
                </td>
-           </tr>
-           <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-            <th class="pl-8 py-4 ">
-               2
-            </th>
-            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                Surat Undangan Rapat asdas
-            </th>
-            <td class="px-6 py-4">
-               21 Mei 2024
-            </td>
-            <td class="px-6 py-4">
-                Teo
-            </td>
-            <td class="px-6 py-4">
-                Akan dihadiri tanggal 26 agustus 2024
-            </td>
-            <td class="px-6 py-4">
-               <a href="/suratmasuk/view" class="font-medium p-1.5 rounded-md text-black bg-green-500 dark:text-blue-500 hover:underline">View</a>
-               <a href="/suratmasuk/edit" class="font-medium p-1.5 rounded-md text-black bg-blue-500 dark:text-blue-500 hover:underline">Edit</a>
-               <a href="#" class="font-medium p-1.5 rounded-md text-black bg-red-500 dark:text-blue-500 hover:underline" onclick="return confirm('Are you sure?')">Delete</a>
-            </td>
-        </tr>
-           
+           @endforeach
        </tbody>
    </table>
 </div>

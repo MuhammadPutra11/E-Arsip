@@ -14,8 +14,9 @@ class DokumenController extends Controller
      */
     public function index(Dokumen $dokumen)
     {
-        return view('dashboard.posts.show', [
-            'dokumen' => $dokumen
+
+        return view('dokumen.index', [
+            "dokumen" => Dokumen::all()
         ]);
     }
 

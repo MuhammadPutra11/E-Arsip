@@ -13,7 +13,9 @@ class SuratKeluarController extends Controller
      */
     public function index()
     {
-        //
+        return view('suratkeluar.index', [
+            "suratkeluar" => SuratKeluar::all()
+        ]);
     }
 
     /**

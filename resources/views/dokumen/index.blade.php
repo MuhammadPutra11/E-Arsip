@@ -11,10 +11,10 @@
          </div>
 
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-   <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-       <thead class="text-s text-gray-800 uppercase bg-gray-300 dark:bg-gray-700 dark:text-gray-400">
+   <table class="w-full table-fixed text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+       <thead class="text-s text-gray-800 uppercase bg-gray-300 dark:bg-gray-700 dark:text-gray-400">            
            <tr>
-               <th scope="col" class="px-6 py-3">
+               <th scope="col" class="px-8 py-3">
                   No
                </th>
                <th scope="col" class="px-6 py-3">
@@ -38,56 +38,38 @@
            </tr>
        </thead>
        <tbody>
+        @foreach ($dokumen as $dokumen)
+
            <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
                <th class="pl-8 py-4 ">
-                  1
+                {{ $loop->iteration }}
                </th>
                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                   Renstra 2023
+                {{ $dokumen->nama_dokumen }}
                </th>
                <td class="px-6 py-4">
-                  21 Mei 2023
+                {{ $dokumen->tanggal_dokumen }}
                </td>
                <td class="px-6 py-4">
-                   Teo
+                {{ $dokumen->pengedit_dokumen }}
                </td>
                <td class="px-6 py-4">
-                   Proses
+                {{ $dokumen->status }}
                </td>
-               <td class="px-6 py-4">
-                   Belum mengisi tabel TC.31
+               <td class="px-6 py-4 overflow-x-auto">
+                {{ $dokumen->catatan }}
                </td>
                <td class="px-6 py-4">
                   <a href="/dokumen/view" class="font-medium p-1.5 rounded-md text-black bg-green-500 dark:text-blue-500 hover:underline">View</a>
-                  <a href="/dokumen/edit" class="font-medium p-1.5 rounded-md text-black bg-blue-500 dark:text-blue-500 hover:underline">Edit</a>
-                  <a href="#" class="font-medium p-1.5 rounded-md text-black bg-red-500 dark:text-blue-500 hover:underline" onclick="return confirm('Are you sure?')">Delete</a>
-               </td>
+                  <a href="/dokumen/{{ $dokumen->id }}/edit" class="font-medium p-1.5 rounded-md text-black bg-blue-500 dark:text-blue-500 hover:underline">Edit</a>
+                  <form action="/dokumen/{{ $dokumen->id }}" method="post" class='d-inline'>
+                  @method('delete')
+                  @csrf
+                    <a href="#" class="font-medium p-1.5 rounded-md text-black bg-red-500 dark:text-blue-500 hover:underline" onclick="return confirm('Are you sure?')">Delete</a>
+                  </form>
+                </td>
            </tr>
-           <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-            <th class="pl-8 py-4 ">
-               2
-            </th>
-            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                Lakip 2024
-            </th>
-            <td class="px-6 py-4">
-               21 Mei 2024
-            </td>
-            <td class="px-6 py-4">
-                Teo
-            </td>
-            <td class="px-6 py-4">
-                Selesai
-            </td>
-            <td class="px-6 py-4">
-                Sudah di Revisi
-            </td>
-            <td class="px-6 py-4">
-               <a href="/dokumen/view" class="font-medium p-1.5 rounded-md text-black bg-green-500 dark:text-blue-500 hover:underline">View</a>
-               <a href="/dokumen/edit" class="font-medium p-1.5 rounded-md text-black bg-blue-500 dark:text-blue-500 hover:underline">Edit</a>
-               <a href="#" class="font-medium p-1.5 rounded-md text-black bg-red-500 dark:text-blue-500 hover:underline" onclick="return confirm('Are you sure?')">Delete</a>
-            </td>
-        </tr>
+           @endforeach
            
        </tbody>
    </table>
