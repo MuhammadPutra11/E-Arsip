@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\SuratKeluar;
 use App\Http\Requests\StoreSuratKeluarRequest;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\UpdateSuratKeluarRequest;
 
 class SuratKeluarController extends Controller
@@ -13,8 +14,14 @@ class SuratKeluarController extends Controller
      */
     public function index()
     {
+        $suratkeluar = SuratKeluar::latest();
+
+        if(request('search')) {
+            $suratkeluar->where('nama_suratkeluar', 'like', '%' . request('search') . '%');
+        }
+
         return view('suratkeluar.index', [
-            "suratkeluar" => SuratKeluar::all()
+            "suratkeluar" => $suratkeluar->get()
         ]);
     }
 
@@ -23,7 +30,7 @@ class SuratKeluarController extends Controller
      */
     public function create()
     {
-        //
+        return view('suratkeluar.create');
     }
 
     /**
@@ -31,7 +38,23 @@ class SuratKeluarController extends Controller
      */
     public function store(StoreSuratKeluarRequest $request)
     {
-        //
+        $validatedData = $request->validate([
+            'nama_suratkeluar' => 'required|max:255',
+            'tanggal_suratkeluar' => 'required',
+            'pengirim' => 'nullable',
+            'catatan' => 'nullable',
+            'file_suratkeluar' => 'file|max:5096'
+        ]);
+
+        if($request->file('file_suratkeluar')) {
+            $validatedData['file_suratkeluar'] = $request->file('file_suratkeluar')->store('file_suratkeluar');
+        }
+
+        $validatedData['user_id'] = auth()->user()->id;
+
+        SuratKeluar::create($validatedData);
+
+        return redirect('/suratkeluar')->with('success', 'Surat keluar telah ditambahkan');
     }
 
     /**
@@ -45,9 +68,13 @@ class SuratKeluarController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(SuratKeluar $suratKeluar)
+    public function edit($id)
     {
-        //
+        $suratkeluar = SuratKeluar::findOrFail($id);
+
+        return view('suratkeluar.edit', [
+            'suratkeluar' => $suratkeluar
+        ]);
     }
 
     /**
@@ -58,11 +85,30 @@ class SuratKeluarController extends Controller
         //
     }
 
+    public function download($id)
+    {
+        // Cari file berdasarkan ID
+        $suratkeluar = SuratKeluar::findOrFail($id);
+
+        // Ambil path file dari database
+        $filePath = $suratkeluar->file_suratkeluar;
+
+        // Cek apakah file path ada dan valid
+        if ($filePath && Storage::exists($filePath)) {
+            return Storage::download($filePath);
+        } else {
+            return redirect()->back()->with('error', 'File tidak ditemukan.');
+        }
+    }
+
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(SuratKeluar $suratKeluar)
+    public function destroy($id)
     {
-        //
+        $suratkeluar = SuratKeluar::findOrFail($id);
+        $suratkeluar->delete();
+ 
+        return redirect('/suratkeluar')->with('success', 'Surat Keluar telah dihapus');
     }
 }

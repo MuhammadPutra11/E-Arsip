@@ -19,7 +19,7 @@ class CreateDokumensTable extends Migration
             $table->string('nama_dokumen');
             $table->string('tanggal_dokumen');
             $table->string('pengedit_dokumen')->nullable();
-            $table->text('status');
+            $table->foreignId('status_id');
             $table->text('catatan')->nullable();
             $table->string('file_dokumen')->nullable();
             $table->timestamps();

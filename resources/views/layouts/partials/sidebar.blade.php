@@ -28,19 +28,24 @@
              <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600" id="dropdown-user">
                <div class="px-4 py-3" role="none">
                  <p class="text-sm text-gray-900 dark:text-white" role="none">
-                   User
+                   Hello !
                  </p>
                  <p class="text-sm font-medium text-gray-900 truncate dark:text-gray-300" role="none">
-                   Teo
+                   {{ auth()->user()->username }}
                  </p>
                </div>
                <ul class="py-1" role="none">
                  <li>
-                   <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Dashboard</a>
+                   <a href="/" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Dashboard</a>
                  </li>
                  
                  <li>
-                   <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Sign out</a>
+                     <form action="/logout" method="post">
+                        @csrf
+                        <button type="submit" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Sign out</a>
+                        </button>
+                     </form>
+
                  </li>
                </ul>
              </div>
@@ -94,15 +99,20 @@
                 <span class="flex-1 ms-3 whitespace-nowrap">Foto Kegiatan</span>
              </a>
           </li>
-          <li>
-             <a href="sign out" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group-hover:text-gray-900 dark:group-hover:text-white">
-             <svg class="w-6 h-6 text-gray-500 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-               <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H8m12 0-4 4m4-4-4-4M9 4H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h2"/>
-            </svg>
+          <form action="/logout" method="post">
+            @csrf
+            <!-- <button type="submit"> -->
+            <li>
+               <button type="submit" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group-hover:text-gray-900 dark:group-hover:text-white">
+               <svg class="w-6 h-6 text-gray-500 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H8m12 0-4 4m4-4-4-4M9 4H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h2"/>
+               </svg>
 
-                <span class="flex-1 ms-3 whitespace-nowrap">Sign Out</span>
-             </a>
-          </li>
+                  <span class="flex-1 ms-3 whitespace-nowrap">Sign Out</span>
+               </a>
+            </li>
+         </button>
+         </form>
 
        </ul>
     </div>

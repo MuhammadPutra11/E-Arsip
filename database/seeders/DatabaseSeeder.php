@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Dokumen;
 use App\Models\SuratMasuk;
 use App\Models\SuratKeluar;
+use App\Models\Status;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -39,7 +40,7 @@ class DatabaseSeeder extends Seeder
             'nama_dokumen' => 'Lakip',
             'tanggal_dokumen' => '31 mei',
             'pengedit_dokumen' => 'putra',
-            'status' => 'selesai',
+            'status_id' => '1',
             'catatan' => 'ea ea ea ea',
             'file_dokumen' => 'asldas90d8uyap9a'
         ]);
@@ -50,7 +51,7 @@ class DatabaseSeeder extends Seeder
             'nama_dokumen' => 'Renstra',
             'tanggal_dokumen' => '31 mei',
             'pengedit_dokumen' => 'putra2',
-            'status' => 'proses',
+            'status_id' => '2',
             'catatan' => 'eae eae eae eae',
             'file_dokumen' => 'bvsd34d8uyap9a'
         ]);
@@ -111,6 +112,16 @@ class DatabaseSeeder extends Seeder
             'pengirim' => 'putra',
             'catatan' => 'ea ea ea ea',
             'file_suratmasuk' => 'vbnas90d8uyap9a'
+        ]);
+
+        Status::create([
+            'id' => '1',
+            'nama_status' => 'Proses'
+        ]);
+
+        Status::create([
+            'id' => '2',
+            'nama_status' => 'Selesai'
         ]);
 
     }
