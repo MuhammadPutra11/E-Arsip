@@ -28,6 +28,6 @@ class DaftarController extends Controller
         User::create($validatedData);
 
         //$request->session()->flash('succes', 'Tambah User Berhasil !!');
-        return redirect('/')->with('success', 'Tambah User Berhasil !!');
+        return redirect('/admin/user')->with('success', 'Tambah User Berhasil !!');
     }
 }

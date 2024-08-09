@@ -8,6 +8,7 @@ use App\Http\Controllers\DokumenController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SuratMasukController;
 use App\Http\Controllers\SuratKeluarController;
+use App\Http\Controllers\StatusController;
 
 // Route::get('/', function () {
 //     return view('dashboard');
@@ -23,7 +24,8 @@ Route::post('logout', [LoginController::class, 'logout']);
 Route::get('/daftar', [DaftarController::class, 'index']);
 Route::post('/daftar', [DaftarController::class, 'store']);
 
-
+Route::get('/admin/status', [StatusController::class, 'index']);
+Route::post('/', [StatusController::class, 'store']);
 
 
 //Dokumen

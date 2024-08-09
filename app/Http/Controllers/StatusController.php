@@ -23,7 +23,7 @@ class StatusController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.status.create');
     }
 
     /**
@@ -61,8 +61,11 @@ class StatusController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Status $status)
+    public function destroy($id)
     {
-        //
+        $suratkeluar = Status::findOrFail($id);
+        $suratkeluar->delete();
+ 
+        return redirect('/admin/status')->with('success', 'Status telah dihapus');
     }
 }
